@@ -1,23 +1,102 @@
-/* src/components/Header.css */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-  }
+/* Style the navbar */
+.navbar {
+  display: flex;
+  flex-direction: column; /* Stack logo and hamburger vertically */
+  align-items: flex-start; /* Align items to the start (left) */
+  padding: 0;
+  background-image: url('../assets/pic1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height:20vh; /* Adjust height based on content */
+  position: relative; /* For positioning the nav-links */
+}
+
+/* Logo styling */
+.navbar .logo {
+  margin-bottom: 10px; /* Space between logo and hamburger */
+}
+
+.navbar .logo h1 {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 30px;
+  border-radius:5cap;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Hamburger Icon */
+.hamburger {
+  font-size: 4cap;
+  cursor: pointer;
+  color: hsla(0, 0%, 0%, 0.897);
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+/* Transform hamburger to X when menu is open */
+.hamburger.open {
+  transform: rotate(90deg); /* Rotate hamburger into X shape */
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display:inline-flex;
+  flex-direction: row; /* Horizontal orientation for links */
+  position: absolute;
+  top: 90%; /* Position the menu below the hamburger */
+  left: 0%; /* Start hidden off-screen to the right */
+  background-color: #0d3f79;
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden; /* Hide from view and interaction */
+  pointer-events: none; /* Prevent clicking */
+  transition: left 0.5s ease, opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+  z-index: 1000; /* Ensure it is above other elements */
+  width:100%;
+}
+
+/* When the menu is open, move the nav-links into view */
+.nav-links.show {
+  left: 0; /* Move the nav-links to the right side of the hamburger */
+  opacity: 1; /* Fade in */
+  visibility: visible; /* Make visible */
+  pointer-events: auto; /* Allow clicking */
+}
+
+/* Navigation links styling */
+.nav-links li {
+  margin-right:auto; 
+  margin-left:auto;
+ 
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px; /* Better touch target */
+  font-weight:normal;
+  transition: font-weight 0.3s ease;
   
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+}
+.nav-links li a:hover{
+color:#0d3f79;
+background-color: azure;
+border-radius: 2cap;
+}
+/* Media Query for mobile view */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: row; /* Horizontal layout on mobile */
+    left: -220px; /* Hide off-screen initially */
   }
-  
-  nav ul li {
-    display: inline;
-    margin-right: 10px;
+
+  .nav-links.show {
+     /* Move in from the right when shown */
+    opacity: 1; /* Fade in */
+    visibility: visible; /* Make visible */
+    pointer-events: auto; /* Allow clicking */
   }
-  
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
+}
+
+
+

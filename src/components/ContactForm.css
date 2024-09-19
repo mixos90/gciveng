@@ -1,0 +1,101 @@
+/* src/components/ContactForm.css */
+
+/* Container for the contact form */
+.contact-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Form styling */
+  form {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  /* Form fields */
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  form input:focus, form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Textarea specific styling */
+  form textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Download link styling */
+  .download-link-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .download-link {
+    color: #007bff;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .download-link:hover {
+    color: #0056b3;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .contact-form-container {
+      padding: 15px;
+    }
+  
+    button {
+      width: 100%;
+    }
+  
+    .download-link {
+      font-size: 14px;
+    }
+  }
+  

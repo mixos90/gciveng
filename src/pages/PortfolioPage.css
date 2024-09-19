@@ -1,0 +1,109 @@
+.portfolio-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction:column;
+  }
+  
+  .question {
+    margin-bottom: 20px;
+  }
+  
+  fieldset {
+    border:none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  legend {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000; /* Default text color */
+  }
+  
+  .answered {
+    color: green; /* Color for answered questions */
+  }
+  
+  .option-container {
+    margin-bottom: 20px;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center; /* Align radio button and text vertically */
+    margin-bottom: 10px;
+  }
+  
+  .option label {
+    display: flex;
+    align-items:center; /* Align radio button and text vertically */
+    width: 5%; /* Ensure label spans the full width */
+  }
+  
+  .option input[type="radio"] {
+    margin:0; /* Remove default margin around radio button */
+    margin-right: 10px; /* Space between radio button and text */
+    padding:0;
+  }
+  
+  .option span {
+
+    white-space: nowrap; /* Prevent text from wrapping */
+    font-family: Arial, sans-serif; /* Ensure correct font rendering */
+    font-size: 1rem; /* Ensure font size is consistent */
+  }
+  
+  input[type="number"] {
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .user-info {
+    margin-top: 20px;
+  }
+  
+  .user-info h2 {
+    margin-bottom: 10px;
+  }
+  
+  .user-info label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .user-info input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  

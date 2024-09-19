@@ -1,0 +1,6 @@
+.perigrafi {
+    background-color: #5f796038; /* Background color behind the text */
+    padding: 10px; /* Adds space around the text */
+    border-radius: 5px; /* Optional: Adds rounded corners */
+    display: inline-block; /* Makes the container fit the size of its content */
+}
