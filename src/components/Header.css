@@ -1,102 +1,106 @@
-/* Style the navbar */
+/* General Reset and Navbar */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  background-color: #0d3f79;
+}
+
 .navbar {
   display: flex;
-  flex-direction: column; /* Stack logo and hamburger vertically */
-  align-items: flex-start; /* Align items to the start (left) */
-  padding: 0;
-  background-image: url('../assets/pic1.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height:20vh; /* Adjust height based on content */
-  position: relative; /* For positioning the nav-links */
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  z-index: 1; /* Keep the navbar above the sliding menu */
+  background: linear-gradient(45deg, #2f4e72, #2568b4); /* Replace with desired colors */
+
 }
 
 /* Logo styling */
-.navbar .logo {
-  margin-bottom: 10px; /* Space between logo and hamburger */
-}
-
-.navbar .logo h1 {
-  color: rgba(0, 0, 0, 0.8);
+.logo h1 {
+  color: white;
   font-size: 30px;
-  border-radius:5cap;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-/* Hamburger Icon */
-.hamburger {
-  font-size: 4cap;
-  cursor: pointer;
-  color: hsla(0, 0%, 0%, 0.897);
-  transition: transform 0.3s ease; /* Smooth transition for transform */
-}
-
-/* Transform hamburger to X when menu is open */
-.hamburger.open {
-  transform: rotate(90deg); /* Rotate hamburger into X shape */
-}
-
-/* Navigation Links */
+/* Navigation Links - Desktop */
 .nav-links {
   list-style: none;
-  display:inline-flex;
-  flex-direction: row; /* Horizontal orientation for links */
-  position: absolute;
-  top: 90%; /* Position the menu below the hamburger */
-  left: 0%; /* Start hidden off-screen to the right */
-  background-color: #0d3f79;
-  padding: 10px;
-  opacity: 0;
-  visibility: hidden; /* Hide from view and interaction */
-  pointer-events: none; /* Prevent clicking */
-  transition: left 0.5s ease, opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
-  z-index: 1000; /* Ensure it is above other elements */
-  width:100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  
 }
 
-/* When the menu is open, move the nav-links into view */
-.nav-links.show {
-  left: 0; /* Move the nav-links to the right side of the hamburger */
-  opacity: 1; /* Fade in */
-  visibility: visible; /* Make visible */
-  pointer-events: auto; /* Allow clicking */
-}
-
-/* Navigation links styling */
 .nav-links li {
-  margin-right:auto; 
-  margin-left:auto;
- 
+  margin: 0 20px;
 }
 
 .nav-links li a {
   color: white;
   text-decoration: none;
-  padding: 10px; /* Better touch target */
-  font-weight:normal;
-  transition: font-weight 0.3s ease;
+  padding: 10px;
+  font-weight: bold;          /* Make the text bold */
+  font-size: 1.2em;           /* Make the text three times larger */
+  text-transform: uppercase;  /* Make the text uppercase */
   
 }
-.nav-links li a:hover{
-color:#0d3f79;
-background-color: azure;
-border-radius: 2cap;
+
+.nav-links li a:hover {
+  background-color: azure;
+  color: #0d3f79;
+  border-radius: 5px;
 }
-/* Media Query for mobile view */
+
+/* Hamburger Icon */
+.hamburger {
+  font-size: 40px;
+  cursor: pointer;
+  color: white;
+  display: none;
+}
+
+/* Mobile View Styling */
 @media (max-width: 768px) {
+  /* Hide the horizontal navigation links */
   .nav-links {
-    flex-direction: row; /* Horizontal layout on mobile */
-    left: -220px; /* Hide off-screen initially */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    top: 100%; /* Start just below the navbar */
+    left: 0;
+    right: 0;
+    background-color: #0d3f79;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
   }
 
+  /* Show links when the menu is open */
   .nav-links.show {
-     /* Move in from the right when shown */
-    opacity: 1; /* Fade in */
-    visibility: visible; /* Make visible */
-    pointer-events: auto; /* Allow clicking */
+    max-height: 300px; /* Adjust this to fit the total height of your links */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Slide down into view */
+  }
+
+  /* Display the hamburger icon */
+  .hamburger {
+    display: block;
+  }
+
+  /* Adjust margin for nav links */
+  .nav-links li {
+    margin: 15px 0; /* Spacing between links */
   }
 }
-
-
-

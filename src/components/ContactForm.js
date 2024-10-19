@@ -111,16 +111,6 @@ function ContactForm() {
         </div>
         <button type="submit">Send</button>
       </form>
-      <div className="download-link-container">
-        <span>Download application form: </span>
-        <a
-          href="https://eurocheck.gr/pdfs/E-02.1%20%CE%91%CE%99%CE%A4%CE%97%CE%A3%CE%97%20%CE%94%CE%99%CE%95%CE%9D%CE%95%CE%A1%CE%93%CE%95%CE%99%CE%91%CE%A3%20%CE%95%CE%A0%CE%99%CE%98%CE%95%CE%A9%CE%A1%CE%97%CE%A3%CE%97%CE%A3%20%CE%93%CE%99%CE%91%20%CE%A4%CE%97%CE%9D%20%CE%9A%CE%91%CE%A4%CE%91%CE%A4%CE%91%CE%9E%CE%97_v7_24.pdf"
-          download
-          className="download-link"
-        >
-          Download PDF
-        </a>
-      </div>
     </div>
   );
 }

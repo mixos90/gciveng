@@ -8,6 +8,7 @@
     margin-bottom: 20px;
   }
   
+  
   p {
     font-size: 1rem;
     margin-bottom: 20px;
@@ -16,6 +17,7 @@
   form {
     display: flex;
     flex-direction:column;
+    margin-bottom:100px;
   }
   
   .question {
@@ -107,3 +109,34 @@
     box-sizing: border-box;
   }
   
+  /* Download Link Styles */
+.download-link-container {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  margin: 20px 0; /* Space above and below the container */
+  padding: 10px 15px; /* Padding for the container */
+  background-color: #f8f9fa; /* Light background color for contrast */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.download-link-container span {
+  font-size: 16px; /* Font size for the text */
+  color: #333; /* Dark color for text */
+  margin-right: 10px; /* Space between text and link */
+  font-weight: 500; /* Medium weight for text */
+}
+
+.download-link {
+  text-decoration: none; /* Remove underline */
+  background-color: #0d3f79; /* Button-like background color */
+  color: white; /* White text color */
+  padding: 8px 15px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold; /* Bold text for emphasis */
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.download-link:hover {
+  background-color: #007bff; /* Lighter shade on hover */
+}

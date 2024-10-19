@@ -1,20 +1,20 @@
-import 'dotenv/config'; // Use import for dotenv
+import 'dotenv/config';
 import express from 'express';
 import { createTransport } from 'nodemailer';
-import { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell } from 'docx';
-import bodyParser from 'body-parser'; // Default import for CommonJS module
+import bodyParser from 'body-parser';
 import { writeFileSync, unlinkSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import cors from 'cors';
+import * as XLSX from 'xlsx'; // Import the xlsx library
 
 // Define __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-app.use(cors()); // Add CORS support
-app.use(bodyParser.json()); // Use .json() method from the imported bodyParser
+app.use(cors());
+app.use(bodyParser.json());
 
 const transporter = createTransport({
   service: 'gmail',
@@ -26,93 +26,36 @@ const transporter = createTransport({
 
 app.post('/submit-form', async (req, res) => {
   try {
-    console.log('Received form data:', req.body); // Log the received data
+    console.log('Received form data:', req.body);
 
     const { userInfo, questions, answers } = req.body;
 
-    // Create paragraphs for contact information
-    const contactInfoParagraphs = [
-      new Paragraph({
-        children: [
-          new TextRun({ text: `Ονοματεπώμνο: ${userInfo.fullName}`, bold: true }),
-        ],
-        alignment: 'center',
-      }),
-      new Paragraph({
-        children: [
-          new TextRun({ text: `Εταιρία: ${userInfo.companyName}`, bold: true }),
-        ],
-        alignment: 'center',
-      }),
-      new Paragraph({
-        children: [
-          new TextRun({ text: `Email: ${userInfo.email}`, bold: true }),
-        ],
-        alignment: 'center',
-      }),
-    ];
+    // Create the Excel workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheetData = [];
 
-    // Create table for questions and answers
-    const tableRows = [
-      new TableRow({
-        children: [
-          new TableCell({
-            children: [new Paragraph({ text: 'Question', bold: true })],
-            width: { size: 50, type: 'pct' },
-          }),
-          new TableCell({
-            children: [new Paragraph({ text: 'Answer', bold: true })],
-            width: { size: 50, type: 'pct' },
-          }),
-        ],
-      }),
-    ];
+    // Add contact information to the worksheet
+    worksheetData.push(['Ονοματεπώνυμο', userInfo.fullName]);
+    worksheetData.push(['Εταιρία', userInfo.companyName]);
+    worksheetData.push(['Email', userInfo.email]);
 
+    // Add a blank row to separate the contact info from the questions
+    worksheetData.push([]);
+
+    // Add the questions and answers to the worksheet
+    worksheetData.push(['Question', 'Answer']);
     questions.forEach((questionObj, index) => {
-      tableRows.push(
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [new Paragraph(questionObj.question)],
-            }),
-            new TableCell({
-              children: [new Paragraph(answers[index] || 'Not answered')],
-            }),
-          ],
-        })
-      );
+      worksheetData.push([questionObj.question, answers[index] || 'Not answered']);
     });
 
-    const table = new Table({
-      rows: tableRows,
-    });
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Form Data');
 
-    // Create the document
-    const doc = new Document({
-      sections: [
-        {
-          properties: {},
-          children: [
-            ...contactInfoParagraphs,
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: ' ',
-                }),
-              ],
-            }), // Empty paragraph to add space before table
-            table,
-          ],
-        },
-      ],
-    });
-
-    const filePath = join(__dirname, `${userInfo.fullName}_${userInfo.companyName}.docx`);
+    const filePath = join(__dirname, `${userInfo.fullName}_${userInfo.companyName}.xlsx`);
     console.log('File path:', filePath);
-    
-    // Generate document buffer
-    const buffer = await Packer.toBuffer(doc);
-    writeFileSync(filePath, buffer);
+
+    // Write the Excel file to disk
+    XLSX.writeFile(workbook, filePath);
 
     // Check if file exists
     if (existsSync(filePath)) {
@@ -120,7 +63,7 @@ app.post('/submit-form', async (req, res) => {
     } else {
       console.error('File not found:', filePath);
     }
-    
+
     // Define mail options
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -129,7 +72,7 @@ app.post('/submit-form', async (req, res) => {
       text: 'Η φόρμα είναι συννημένη στο email',
       attachments: [
         {
-          filename: `${userInfo.fullName}_${userInfo.companyName}.docx`,
+          filename: `${userInfo.fullName}_${userInfo.companyName}.xlsx`,
           path: filePath
         }
       ]

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
+import './Header.css'; // Make sure your CSS file matches the expected styles
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +8,7 @@ const Header = () => {
   const hamburgerRef = useRef(null);
 
   const toggleMenu = () => {
-    setIsOpen(prevState => !prevState);
+    setIsOpen((prevState) => !prevState);
   };
 
   const closeMenu = () => {
@@ -40,17 +40,10 @@ const Header = () => {
     <header>
       <nav className="navbar">
         <div className="logo">
-          <h1>GCivEng</h1>
+          <h1>LOGO</h1>
         </div>
-        <div 
-          className={`hamburger ${isOpen ? 'open' : ''}`} 
-          ref={hamburgerRef} 
-          onClick={toggleMenu}
-        >
-          &#9776; {/* Hamburger icon */}
-        </div>
-        <ul 
-          ref={menuRef} 
+        <ul
+          ref={menuRef}
           className={`nav-links ${isOpen ? 'show' : ''}`}
         >
           <li><Link to="/" onClick={closeMenu}>Home</Link></li>
@@ -59,6 +52,13 @@ const Header = () => {
           <li><Link to="/about" onClick={closeMenu}>About</Link></li>
           <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
         </ul>
+        <div 
+          className={`hamburger ${isOpen ? 'open' : ''}`} 
+          ref={hamburgerRef} 
+          onClick={toggleMenu}
+        >
+          &#9776; {/* Hamburger icon */}
+        </div>
       </nav>
     </header>
   );

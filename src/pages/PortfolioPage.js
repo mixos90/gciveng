@@ -87,8 +87,8 @@ function PortfolioPage() {
 
   return (
     <div className="portfolio-page">
-      <h1>Questions</h1>
-      <p>Answer the questions by selecting or entering the options below:</p>
+      <h1>Ερωτηματολόγιο</h1>
+      <p><strong>Συμπληρώστε τις παρακάτω πληροφορίες</strong></p>
       <form onSubmit={handleSubmit}>
         {questions.length === 0 ? (
           <p>No questions available</p>
@@ -168,9 +168,9 @@ function PortfolioPage() {
 
         {/* User Information Form */}
         <div className="user-info">
-          <h2>Your Information</h2>
+          <h2>Φόρμα επικοινωνίας</h2>
           <label>
-            Full Name:
+            Ονοματεπώνυμο:
             <input
               type="text"
               name="fullName"
@@ -180,7 +180,7 @@ function PortfolioPage() {
             />
           </label>
           <label>
-            Company Name:
+            Επωνυμία εταιρίας:
             <input
               type="text"
               name="companyName"
@@ -201,9 +201,21 @@ function PortfolioPage() {
           </label>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Αποστολή φόρμας</button>
       </form>
+      
+      <div className="download-link-container">
+        <h2>Κατεβάστε την αίτηση διενέργειας επιθεώρησης σε αρχείο PDF</h2>
+        <a
+          href="https://eurocheck.gr/pdfs/E-02.1%20%CE%91%CE%99%CE%A4%CE%97%CE%A3%CE%97%20%CE%94%CE%99%CE%95%CE%9D%CE%95%CE%A1%CE%93%CE%95%CE%99%CE%91%CE%A3%20%CE%95%CE%A0%CE%99%CE%98%CE%95%CE%A9%CE%A1%CE%97%CE%A3%CE%97%CE%A3%20%CE%93%CE%99%CE%91%20%CE%A4%CE%97%CE%9D%20%CE%9A%CE%91%CE%A4%CE%91%CE%A4%CE%91%CE%9E%CE%97_v7_24.pdf"
+          download
+          className="download-link"
+        >
+          ΑΙΤΗΣΗ ΔΙΕΝΕΡΓΕΙΑΣ ΕΠΙΘΕΩΡΗΣΗΣ
+        </a>
+      </div>
     </div>
+    
   );
 }
 
